@@ -1,3 +1,20 @@
+# Secrets & API Key Files
+.env
+*key*.txt
+*_key.txt
+TMDB_key.txt
+
+# Heavy Raw Data Files (> 5 MB)
+Data/imdb.title.principals.csv
+Data/imdb.name.basics.csv
+Data/genres.csv
+Data/genres_test.csv
+Data/imdb.title.akas.csv
+Data/imdb.title.basics.csv
+Data/imdb.title.crew.csv
+*.zip
+*.tar.gz
+
 # Jupyter Checkpoints
 .ipynb_checkpoints/
 */.ipynb_checkpoints/
@@ -11,7 +28,6 @@ __pycache__/
 env/
 venv/
 ENV/
-.env
 
 # OS metadata
 .DS_Store
