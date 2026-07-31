@@ -1,6 +1,6 @@
-# Portfolio Handoff Payload: Microsoft Film Studio Market Intelligence
+# Portfolio Handoff Payload: Microsoft Film Studio Market Intelligence & ML Engine
 
-This document contains the standardized project payload for integrating the **Microsoft Film Studio: Box Office Market Intelligence** project into Chamila's Healthcare Data Scientist Portfolio website (`ccdportfolio`).
+This document contains the standardized project payload for integrating the **Microsoft Film Studio: Box Office Market Intelligence & ML Engine** project into Chamila's Healthcare Data Scientist Portfolio website (`ccdportfolio`).
 
 ---
 
@@ -11,16 +11,18 @@ Copy and paste the JSON object below into `ccdportfolio/src/data/projects.json`:
 ```json
 {
   "id": "movie-industry-market-analysis",
-  "title": "Microsoft Film Studio: Box Office Market Intelligence",
-  "category": "Full-Stack & Personal Apps",
+  "title": "Microsoft Film Studio: Box Office Market Intelligence & ML Engine",
+  "category": "ML & NLP",
   "image": "/img/projects/movie-industry-market-analysis.png",
-  "summary": "Data-driven executive consulting study evaluating box office revenues, net ROI, movie runtimes, ratings, and seasonal release windows to guide Microsoft's entry into original film production.",
-  "description": "When Microsoft leadership evaluated entering the original video content market alongside industry peers, they required empirical market intelligence to navigate an unfamiliar industry. This project delivers an executive-level consultation analyzing box office financial dynamics across thousands of historical film titles.\n\nTo overcome severe missing-data limitations in baseline public datasets, an advanced multi-source ETL pipeline was built. This included a custom JavaScript DOM auto-scroller and BeautifulSoup HTML parsing engine to scrape over 14,000 IMDbPro records, paired with REST API integration targeting TMDB to ingest popularity indices and vote distributions across 26,500+ movies. Data was unified into a custom 'Binary Genre' taxonomy to reduce multi-label genre noise.\n\nKey strategic takeaways demonstrated that high-grossing action blockbusters carry high capital risk, while Animation/Adventure and Comedy/Romance deliver superior net profit margins and capital efficiency. Release window analysis highlighted critical revenue surges during Q2 Summer and Q4 Holiday release slots.",
+  "summary": "Executive consulting study and machine learning suite combining box office financial analytics, Random Forest revenue prediction (R²=0.74), and NLP critic sentiment mining (AUC=0.81).",
+  "description": "When Microsoft leadership evaluated entering the original video content market alongside tech industry peers, they required empirical market intelligence and predictive analytics to navigate an unfamiliar domain. This project delivers an end-to-end data science consultation paired with active Machine Learning and Natural Language Processing models.\n\nTo overcome severe missing-data limitations in baseline public datasets, an advanced multi-source ETL pipeline was built. This included a custom JavaScript DOM auto-scroller and BeautifulSoup HTML parsing engine to scrape over 14,000 IMDbPro records, paired with REST API integration targeting TMDB to ingest popularity indices across 26,500+ movies.\n\nGoing beyond exploratory data analysis, the repository implements a Supervised Random Forest Regressor predicting worldwide box office gross (R²=0.74, MAE=$52M) based on production budgets, release timing, and genre combinations. Additionally, an NLP sentiment classifier trained on 54,400+ Rotten Tomatoes critic reviews uses TF-IDF vectorization and Logistic Regression (AUC=0.81) to predict review freshness and extract key thematic sentiment drivers.",
   "tech": [
     "Python",
     "Pandas",
-    "Matplotlib",
-    "Seaborn",
+    "Scikit-Learn",
+    "Random Forest",
+    "NLP",
+    "TF-IDF",
     "Web Scraping",
     "TMDB API",
     "Jupyter"
@@ -36,7 +38,7 @@ Copy and paste the JSON object below into `ccdportfolio/src/data/projects.json`:
 
 ## 🏷️ Tech Stack Tags
 
-`Python` • `Pandas` • `Matplotlib` • `Seaborn` • `BeautifulSoup (Web Scraping)` • `TMDB REST API` • `Jupyter Notebooks`
+`Python` • `Pandas` • `Scikit-Learn` • `Random Forest Regressor` • `NLP` • `TF-IDF` • `Matplotlib / Seaborn` • `BeautifulSoup (Web Scraping)` • `TMDB REST API` • `Jupyter Notebooks`
 
 ---
 
@@ -45,7 +47,7 @@ Copy and paste the JSON object below into `ccdportfolio/src/data/projects.json`:
 Use the prompt below with `generate_image` or Google Imagen 3 in the `ccdportfolio` session to generate `/img/projects/movie-industry-market-analysis.png`:
 
 > **Prompt**:  
-> *"A sleek, modern 3D data visualization banner for a movie industry analytics platform. Features floating futuristic holographic charts showing box office revenue growth, film genre pie charts, film reels, cinematic lighting in deep indigo and neon blue tones, and subtle Microsoft-inspired tech aesthetics. Professional 8k resolution, modern UI background, clean glassmorphism style, vibrant data graphs, vector style."*
+> *"A sleek, modern 3D data science & machine learning banner for a film studio box office analytics platform. Features floating futuristic holographic neural network graphs, box office revenue regression curves, film reels, cinematic lighting in deep indigo and orange glow, clean glassmorphism style, modern UI background, 8k resolution vector art."*
 
 ---
 
