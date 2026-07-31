@@ -1,5 +1,29 @@
-.ipynb_checkpoints
+# Jupyter Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Python cache & build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env
+
+# OS metadata
 .DS_Store
-__pycache__
+Thumbs.db
+Desktop.ini
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+
+# Database & Testing
 *.db
+*.sqlite
 *.pytest_cache
