@@ -42,7 +42,7 @@ This project answers 4 primary strategic questions posed by executive decision-m
 Beyond exploratory data analysis, this repository includes two active, production-grade Machine Learning and Natural Language Processing modules:
 
 ### 1. Supervised Box Office Revenue Predictor (`Predictive_ROI_Modeling.ipynb`)
-- **Model Architecture**: Random Forest & Gradient Boosting Regressors trained on production budget, release seasonality, TMDB popularity scores, vote counts, and binary genre indicators across 2,380+ enriched movie titles.
+- **Model Architecture**: Random Forest Regressor trained on production budget, release seasonality, TMDB popularity scores, vote counts, and binary genre indicators across 1,976 enriched movie titles.
 - **Performance Validation**: Achieved **$R^2 = 0.7386$** (explaining ~73.9% of variance in worldwide gross returns), with MAE = **$52.20M** and RMSE = **$103.34M**.
 - **Top Financial Drivers**: Production budget, TMDB popularity index, release month, and Animation/Adventure/Sci-Fi genre flags emerged as top revenue predictors.
 
@@ -59,7 +59,7 @@ Beyond exploratory data analysis, this repository includes two active, productio
 ---
 
 ### 2. NLP Critic Review Sentiment Engine (`NLP_Review_Sentiment_Analysis.ipynb`)
-- **Model Architecture**: TF-IDF Vectorization (2,500 n-gram features) paired with Logistic Regression & Naive Bayes classifiers trained on **54,432 Rotten Tomatoes critic review texts** (`Data/rt.reviews.tsv`).
+- **Model Architecture**: TF-IDF Vectorization (2,500 n-gram features) paired with a Logistic Regression classifier trained on **54,432 Rotten Tomatoes critic review texts** (`Data/rt.reviews.tsv`).
 - **Performance Validation**: Achieved **74.0% Classification Accuracy** and **ROC-AUC = 0.8080** in distinguishing *Fresh* vs. *Rotten* critic reviews.
 
 <div align="center">
