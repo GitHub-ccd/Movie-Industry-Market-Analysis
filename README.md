@@ -55,6 +55,7 @@ The four-source data pipeline (IMDb, Box Office Mojo, Rotten Tomatoes, TMDB) plu
 | Approach | Why it was dropped |
 |---|---|
 | Reporting $R^2 = 0.7385$ (with TMDB engagement features) as the headline number | Re-ran without `popularity`, `vote_average`, `vote_count` and $R^2$ dropped to 0.5287. Those features are downstream of the box-office outcome, so they inflate the score without providing real pre-release signal — dropped in favor of reporting the ablated number as the one that means something. |
+| A genre-profit table in the rebuild's original README (Animation+Adventure at $310M+, and similar figures for three other genre pairs) | Doesn't trace to `Visualization.ipynb` — that notebook is unchanged since 2020, and its own written conclusion says "Family-SciFi genre does well at box office and have high profits compared to other genres," a different genre than the table claimed. Removed rather than rebuilt. |
 
 This rebuild otherwise went in close to a straight line — I picked Random Forest and TF-IDF up front and didn't benchmark either against XGBoost, LightGBM, or a transformer embedding. The comparison work I'd want here isn't done.
 
