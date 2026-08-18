@@ -43,7 +43,7 @@ Beyond exploratory data analysis, this repository includes two active, productio
 
 ### 1. Supervised Box Office Revenue Predictor (`Predictive_ROI_Modeling.ipynb`)
 - **Model Architecture**: Random Forest Regressor trained on production budget, release seasonality, TMDB popularity scores, vote counts, and binary genre indicators across 1,976 enriched movie titles.
-- **Performance Validation**: Achieved **$R^2 = 0.7386$** (explaining ~73.9% of variance in worldwide gross returns), with MAE = **$52.20M** and RMSE = **$103.34M**.
+- **Performance Validation**: With TMDB engagement features included (`popularity`, `vote_average`, `vote_count`), $R^2 = 0.7385$, MAE = **$52.10M**, RMSE = **$103.35M**. Those three features accumulate *after* a film's release and are partly a function of the box-office outcome itself — dropping them and re-fitting the identical model drops $R^2$ to **0.5287** (MAE $72.89M, RMSE $138.75M). **0.5287 is the number that reflects predictive signal available before a film releases**; 0.7385 is reported alongside it as the leaky comparison, not the headline. See the notebook's leakage-check cell for the ablation.
 - **Top Financial Drivers**: Production budget, TMDB popularity index, release month, and Animation/Adventure/Sci-Fi genre flags emerged as top revenue predictors.
 
 <div align="center">
@@ -59,8 +59,8 @@ Beyond exploratory data analysis, this repository includes two active, productio
 ---
 
 ### 2. NLP Critic Review Sentiment Engine (`NLP_Review_Sentiment_Analysis.ipynb`)
-- **Model Architecture**: TF-IDF Vectorization (2,500 n-gram features) paired with a Logistic Regression classifier trained on **54,432 Rotten Tomatoes critic review texts** (`Data/rt.reviews.tsv`).
-- **Performance Validation**: Achieved **74.0% Classification Accuracy** and **ROC-AUC = 0.8080** in distinguishing *Fresh* vs. *Rotten* critic reviews.
+- **Model Architecture**: TF-IDF Vectorization (2,500 n-gram features) paired with a Logistic Regression classifier. Sourced from **54,432 Rotten Tomatoes critic reviews** (`Data/rt.reviews.tsv`); **48,869** have both review text and a fresh/rotten label and are used for training — all of them, not a sample.
+- **Performance Validation**: Achieved **75.3% Classification Accuracy** and **ROC-AUC = 0.8233** in distinguishing *Fresh* vs. *Rotten* critic reviews.
 
 <div align="center">
   <img src="images/nlp_sentiment_confusion_matrix.png" alt="NLP Sentiment Confusion Matrix" width="55%" />
@@ -124,8 +124,8 @@ Movie-Industry-Market-Analysis/
 │   ├── nlp_sentiment_confusion_matrix.png # NLP Sentiment Confusion Matrix
 │   ├── profit_genres2.jpeg           # Financial EDA figures
 │   └── ...
-├── Predictive_ROI_Modeling.ipynb     # ML Notebook: Box Office Revenue Regression Model ($R^2 = 0.74$)
-├── NLP_Review_Sentiment_Analysis.ipynb # NLP Notebook: Critic Review Sentiment Engine (AUC = 0.81)
+├── Predictive_ROI_Modeling.ipynb     # ML Notebook: Box Office Revenue Regression Model (R^2 = 0.74, 0.53 with engagement features ablated)
+├── NLP_Review_Sentiment_Analysis.ipynb # NLP Notebook: Critic Review Sentiment Engine (AUC = 0.82)
 ├── data gathering.ipynb              # ETL Notebook: Scraping, API calls & data ingestion
 ├── Data_Cleaning_Exploration.ipynb   # Data Wrangling Notebook: Cleaning & feature engineering
 ├── Visualization.ipynb               # EDA Notebook: Statistical analysis & visualizations
