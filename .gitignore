@@ -31,6 +31,7 @@ ENV/
 
 # OS metadata
 .DS_Store
+._*
 Thumbs.db
 Desktop.ini
 
