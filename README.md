@@ -28,7 +28,7 @@ The 2020 project stopped at EDA — charts, a genre-profit breakdown, and a writ
 
 **Revenue regressor** (`Predictive_ROI_Modeling.ipynb`). A Random Forest trained on production budget, release month, TMDB popularity/vote metrics, and the binary-genre one-hot flags, across the 1,976 titles that survive the merge and cleaning. I picked a tree ensemble on purpose, not by default: budget doesn't map to revenue linearly — a $200M film doesn't earn ten times what a $20M film earns, there's saturation at the top and a floor at the bottom — and budget interacts with genre, since $50M buys a lot in horror and almost nothing in a VFX action film. A tree ensemble picks up both without me specifying either, and it doesn't assume anything about the shape of the residuals, which matters because revenue is heavily right-skewed. Linear regression would've needed me to guess the transformations up front.
 
-With TMDB's `popularity`, `vote_average`, and `vote_count` included, $R^2 = 0.7385$ (MAE $52.10M, RMSE $103.35M). Those three features accumulate *after* a film releases and are partly driven by how well it actually did — so I re-ran the identical model without them and watched $R^2$ drop to **0.5287** (MAE $72.89M, RMSE $138.75M). I'm reporting 0.5287 as the number that means something — it's what the model can actually see before a film comes out. 0.7385 is here too, as the comparison that shows the leak, not as the headline. The ablation is a real cell in the notebook, not just a claim.
+Trained with TMDB's `popularity`, `vote_average`, and `vote_count` included, the model reports $R^2 = 0.7385$ — but those three features accumulate *after* a film releases and are partly driven by how well it actually did, which inflates the score without providing real pre-release signal. The notebook drops them and fits on pre-release features only: $R^2 = 0.5287$ (MAE $72.89M, RMSE $138.75M). **0.5287 is the number I'm reporting** — it's what the model can actually see before a film comes out. 0.7385 is stated here for context on why the ablation happened; the notebook fits the ablated feature set only, it doesn't compute both side by side anymore.
 
 **Sentiment classifier** (`NLP_Review_Sentiment_Analysis.ipynb`). TF-IDF (2,500 n-gram features, unigrams and bigrams) into a Logistic Regression classifier on Rotten Tomatoes critic reviews, predicting Fresh vs. Rotten. The source file has 54,432 reviews; 48,869 have both review text and a label, and the model trains on all of them — accuracy 75.3%, ROC-AUC 0.8233.
 
@@ -55,6 +55,7 @@ The four-source data pipeline (IMDb, Box Office Mojo, Rotten Tomatoes, TMDB) plu
 | Approach | Why it was dropped |
 |---|---|
 | Reporting $R^2 = 0.7385$ (with TMDB engagement features) as the headline number | Re-ran without `popularity`, `vote_average`, `vote_count` and $R^2$ dropped to 0.5287. Those features are downstream of the box-office outcome, so they inflate the score without providing real pre-release signal — dropped in favor of reporting the ablated number as the one that means something. |
+| Computing both the leaky and ablated $R^2$ side by side in-notebook | Original approach, briefly implemented as a separate leakage-check cell. Superseded once the feature-set edit above became the only fitting cell — the notebook now fits the ablated set exclusively, so 0.7385 is stated in the README for context but isn't a number the notebook computes anymore. |
 | A genre-profit table in the rebuild's original README (Animation+Adventure at $310M+, and similar figures for three other genre pairs) | Doesn't trace to `Visualization.ipynb` — that notebook is unchanged since 2020, and its own written conclusion says "Family-SciFi genre does well at box office and have high profits compared to other genres," a different genre than the table claimed. Removed rather than rebuilt. |
 
 This rebuild otherwise went in close to a straight line — I picked Random Forest and TF-IDF up front and didn't benchmark either against XGBoost, LightGBM, or a transformer embedding. The comparison work I'd want here isn't done.
@@ -117,7 +118,7 @@ Movie-Industry-Market-Analysis/
 │   ├── nlp_sentiment_confusion_matrix.png # NLP Sentiment Confusion Matrix
 │   ├── profit_genres2.jpeg           # Original 2020 genre-profit EDA figure
 │   └── ...
-├── Predictive_ROI_Modeling.ipynb     # 2026: Revenue regressor (R^2 = 0.74 leaky / 0.53 ablated)
+├── Predictive_ROI_Modeling.ipynb     # 2026: Revenue regressor (R^2 = 0.53, ablated feature set)
 ├── NLP_Review_Sentiment_Analysis.ipynb # 2026: Critic sentiment classifier (AUC = 0.82)
 ├── data gathering.ipynb              # 2020: Scraping, API calls & data ingestion
 ├── Data_Cleaning_Exploration.ipynb   # 2020: Data wrangling & feature engineering
@@ -153,7 +154,7 @@ Movie-Industry-Market-Analysis/
    ```
 
 4. Open and run notebooks:
-   - `Predictive_ROI_Modeling.ipynb` *(2026 — revenue regressor, includes the leakage-check cell)*
+   - `Predictive_ROI_Modeling.ipynb` *(2026 — revenue regressor, fits the ablated/leakage-safe feature set)*
    - `NLP_Review_Sentiment_Analysis.ipynb` *(2026 — sentiment classifier)*
    - `Visualization.ipynb` *(2020 — original EDA)*
 
